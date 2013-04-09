@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="windows-1251"?>
-<object type="TAForm" name="Form1">
+<object type="TAForm" name="Form1_1">
 	<properties>
 		<property name="Left" vt="Int16">305</property>
 		<property name="Top" vt="Int16">149</property>
@@ -45,7 +45,7 @@
 		<object type="TALabel" name="Label1">
 			<properties>
 				<property name="Left" vt="Int8">32</property>
-				<property name="Top" vt="Int8">41</property>
+				<property name="Top" vt="Int8">73</property>
 				<property name="Width" vt="Int8">55</property>
 				<property name="Height" vt="Int8">17</property>
 				<property name="Caption" vt="String">Chamber 1</property>
@@ -60,7 +60,7 @@
 		<object type="TALabel" name="Label2">
 			<properties>
 				<property name="Left" vt="Int8">32</property>
-				<property name="Top" vt="Int8">88</property>
+				<property name="Top" vt="Int8">120</property>
 				<property name="Width" vt="Int8">55</property>
 				<property name="Height" vt="Int8">17</property>
 				<property name="Caption" vt="String">Chamber 2</property>
@@ -75,7 +75,7 @@
 		<object type="TALabel" name="Label3">
 			<properties>
 				<property name="Left" vt="Int8">32</property>
-				<property name="Top" vt="Int16">135</property>
+				<property name="Top" vt="Int16">167</property>
 				<property name="Width" vt="Int8">55</property>
 				<property name="Height" vt="Int8">17</property>
 				<property name="Caption" vt="String">Chamber 3</property>
@@ -90,7 +90,7 @@
 		<object type="TALabel" name="Label4">
 			<properties>
 				<property name="Left" vt="Int8">32</property>
-				<property name="Top" vt="Int16">182</property>
+				<property name="Top" vt="Int16">214</property>
 				<property name="Width" vt="Int8">55</property>
 				<property name="Height" vt="Int8">17</property>
 				<property name="Caption" vt="String">Chamber 4</property>
@@ -105,7 +105,7 @@
 		<object type="TALabel" name="Label5">
 			<properties>
 				<property name="Left" vt="Int8">32</property>
-				<property name="Top" vt="Int16">229</property>
+				<property name="Top" vt="Int16">261</property>
 				<property name="Width" vt="Int8">55</property>
 				<property name="Height" vt="Int8">17</property>
 				<property name="Caption" vt="String">Chamber 5</property>
@@ -120,7 +120,7 @@
 		<object type="TALabel" name="Label6">
 			<properties>
 				<property name="Left" vt="Int8">32</property>
-				<property name="Top" vt="Int16">276</property>
+				<property name="Top" vt="Int16">308</property>
 				<property name="Width" vt="Int8">55</property>
 				<property name="Height" vt="Int8">17</property>
 				<property name="Caption" vt="String">Chamber 6</property>
@@ -135,10 +135,10 @@
 		<object type="TASlider" name="Slider1">
 			<properties>
 				<property name="Left" vt="Int8">96</property>
-				<property name="Top" vt="Int8">33</property>
+				<property name="Top" vt="Int8">65</property>
 				<property name="Width" vt="Int16">150</property>
 				<property name="Height" vt="Int8">45</property>
-				<property name="Max" vt="Int8">100</property>
+				<property name="Max" vt="Int8">9</property>
 				<property name="TabOrder" vt="Int8">6</property>
 				<property name="ThumbLength" vt="Int8">19</property>
 				<property name="CtrlStyle" vt="Int32">1342308353</property>
@@ -150,10 +150,10 @@
 		<object type="TASlider" name="Slider2">
 			<properties>
 				<property name="Left" vt="Int8">96</property>
-				<property name="Top" vt="Int8">80</property>
+				<property name="Top" vt="Int8">112</property>
 				<property name="Width" vt="Int16">150</property>
 				<property name="Height" vt="Int8">45</property>
-				<property name="Max" vt="Int8">100</property>
+				<property name="Max" vt="Int8">9</property>
 				<property name="TabOrder" vt="Int8">7</property>
 				<property name="ThumbLength" vt="Int8">19</property>
 				<property name="CtrlStyle" vt="Int32">1342308353</property>
@@ -165,10 +165,10 @@
 		<object type="TASlider" name="Slider3">
 			<properties>
 				<property name="Left" vt="Int8">96</property>
-				<property name="Top" vt="Int16">174</property>
+				<property name="Top" vt="Int16">206</property>
 				<property name="Width" vt="Int16">150</property>
 				<property name="Height" vt="Int8">45</property>
-				<property name="Max" vt="Int8">100</property>
+				<property name="Max" vt="Int8">9</property>
 				<property name="TabOrder" vt="Int8">8</property>
 				<property name="ThumbLength" vt="Int8">19</property>
 				<property name="CtrlStyle" vt="Int32">1342308353</property>
@@ -180,10 +180,10 @@
 		<object type="TASlider" name="Slider4">
 			<properties>
 				<property name="Left" vt="Int8">96</property>
-				<property name="Top" vt="Int16">221</property>
+				<property name="Top" vt="Int16">253</property>
 				<property name="Width" vt="Int16">150</property>
 				<property name="Height" vt="Int8">45</property>
-				<property name="Max" vt="Int8">100</property>
+				<property name="Max" vt="Int8">9</property>
 				<property name="TabOrder" vt="Int8">9</property>
 				<property name="ThumbLength" vt="Int8">19</property>
 				<property name="CtrlStyle" vt="Int32">1342308353</property>
@@ -195,10 +195,10 @@
 		<object type="TASlider" name="Slider5">
 			<properties>
 				<property name="Left" vt="Int8">96</property>
-				<property name="Top" vt="Int8">127</property>
+				<property name="Top" vt="Int16">159</property>
 				<property name="Width" vt="Int16">150</property>
 				<property name="Height" vt="Int8">45</property>
-				<property name="Max" vt="Int8">100</property>
+				<property name="Max" vt="Int8">9</property>
 				<property name="TabOrder" vt="Int8">10</property>
 				<property name="ThumbLength" vt="Int8">19</property>
 				<property name="CtrlStyle" vt="Int32">1342308353</property>
@@ -210,10 +210,10 @@
 		<object type="TASlider" name="Slider6">
 			<properties>
 				<property name="Left" vt="Int8">96</property>
-				<property name="Top" vt="Int16">268</property>
+				<property name="Top" vt="Int16">300</property>
 				<property name="Width" vt="Int16">150</property>
 				<property name="Height" vt="Int8">45</property>
-				<property name="Max" vt="Int8">100</property>
+				<property name="Max" vt="Int8">9</property>
 				<property name="TabOrder" vt="Int8">11</property>
 				<property name="ThumbLength" vt="Int8">19</property>
 				<property name="CtrlStyle" vt="Int32">1342308353</property>
@@ -222,12 +222,132 @@
 			</properties>
 			<components/>
 		</object>
+		<object type="TAInput" name="Input1">
+			<properties>
+				<property name="Left" vt="Int16">256</property>
+				<property name="Top" vt="Int8">64</property>
+				<property name="Width" vt="Int8">121</property>
+				<property name="Height" vt="Int8">21</property>
+				<property name="Enabled" vt="False">False</property>
+				<property name="TabOrder" vt="Int8">12</property>
+				<property name="Text" vt="String">Input1</property>
+				<property name="CtrlStyle" vt="Int32">1342374016</property>
+				<property name="CtrlExStyle" vt="Int16">512</property>
+				<property name="Resizing" vt="Set">DockHeight</property>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAInput" name="Input2">
+			<properties>
+				<property name="Left" vt="Int16">256</property>
+				<property name="Top" vt="Int8">109</property>
+				<property name="Width" vt="Int8">121</property>
+				<property name="Height" vt="Int8">21</property>
+				<property name="Enabled" vt="False">False</property>
+				<property name="TabOrder" vt="Int8">13</property>
+				<property name="Text" vt="String">Input1</property>
+				<property name="CtrlStyle" vt="Int32">1342374016</property>
+				<property name="CtrlExStyle" vt="Int16">512</property>
+				<property name="Resizing" vt="Set">DockHeight</property>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAInput" name="Input3">
+			<properties>
+				<property name="Left" vt="Int16">256</property>
+				<property name="Top" vt="Int16">154</property>
+				<property name="Width" vt="Int8">121</property>
+				<property name="Height" vt="Int8">21</property>
+				<property name="Enabled" vt="False">False</property>
+				<property name="TabOrder" vt="Int8">14</property>
+				<property name="Text" vt="String">Input1</property>
+				<property name="CtrlStyle" vt="Int32">1342374016</property>
+				<property name="CtrlExStyle" vt="Int16">512</property>
+				<property name="Resizing" vt="Set">DockHeight</property>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAInput" name="Input4">
+			<properties>
+				<property name="Left" vt="Int16">256</property>
+				<property name="Top" vt="Int16">244</property>
+				<property name="Width" vt="Int8">121</property>
+				<property name="Height" vt="Int8">21</property>
+				<property name="Enabled" vt="False">False</property>
+				<property name="TabOrder" vt="Int8">15</property>
+				<property name="Text" vt="String">Input1</property>
+				<property name="CtrlStyle" vt="Int32">1342374016</property>
+				<property name="CtrlExStyle" vt="Int16">512</property>
+				<property name="Resizing" vt="Set">DockHeight</property>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAInput" name="Input5">
+			<properties>
+				<property name="Left" vt="Int16">256</property>
+				<property name="Top" vt="Int16">199</property>
+				<property name="Width" vt="Int8">121</property>
+				<property name="Height" vt="Int8">21</property>
+				<property name="Enabled" vt="False">False</property>
+				<property name="TabOrder" vt="Int8">16</property>
+				<property name="Text" vt="String">Input1</property>
+				<property name="CtrlStyle" vt="Int32">1342374016</property>
+				<property name="CtrlExStyle" vt="Int16">512</property>
+				<property name="Resizing" vt="Set">DockHeight</property>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAInput" name="Input6">
+			<properties>
+				<property name="Left" vt="Int16">256</property>
+				<property name="Top" vt="Int16">289</property>
+				<property name="Width" vt="Int8">121</property>
+				<property name="Height" vt="Int8">21</property>
+				<property name="Enabled" vt="False">False</property>
+				<property name="TabOrder" vt="Int8">17</property>
+				<property name="Text" vt="String">Input1</property>
+				<property name="CtrlStyle" vt="Int32">1342374016</property>
+				<property name="CtrlExStyle" vt="Int16">512</property>
+				<property name="Resizing" vt="Set">DockHeight</property>
+			</properties>
+			<components/>
+		</object>
+		<object type="TASlider" name="Slider7">
+			<properties>
+				<property name="Left" vt="Int16">151</property>
+				<property name="Top" vt="Int8">14</property>
+				<property name="Width" vt="Int16">150</property>
+				<property name="Height" vt="Int8">45</property>
+				<property name="Max" vt="Int8">9</property>
+				<property name="TabOrder" vt="Int8">18</property>
+				<property name="ThumbLength" vt="Int8">19</property>
+				<property name="CtrlStyle" vt="Int32">1342308353</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set">DockWidth, DockHeight</property>
+			</properties>
+			<components/>
+		</object>
+		<object type="TALabel" name="Label7">
+			<properties>
+				<property name="Left" vt="Int8">78</property>
+				<property name="Top" vt="Int8">21</property>
+				<property name="Width" vt="Int8">49</property>
+				<property name="Height" vt="Int8">17</property>
+				<property name="Caption" vt="String">MASTER</property>
+				<property name="TabOrder" vt="Int8">19</property>
+				<property name="HaveVariable" vt="False">False</property>
+				<property name="CtrlStyle" vt="Int32">1342308608</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
 		<object type="TMainMenu" name="MainMenu1">
 			<properties/>
 			<components>
 				<object type="TAMenuItem" name="MenuItem3">
 					<properties>
-						<property name="Caption" vt="String">File</property>
+						<property name="Caption" vt="String">&amp;File</property>
 					</properties>
 					<components>
 						<object type="TAMenuItem" name="MenuItem1">
@@ -252,7 +372,7 @@
 				</object>
 				<object type="TAMenuItem" name="MenuItem2">
 					<properties>
-						<property name="Caption" vt="String">Options</property>
+						<property name="Caption" vt="String">&amp;Options</property>
 					</properties>
 					<components/>
 				</object>
