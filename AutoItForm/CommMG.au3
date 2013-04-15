@@ -103,7 +103,6 @@ Func _CommSetDllPath($sFullPath)
 
 EndFunc   ;==>_CommSetDllPath
 
-
 ;===============================================================================
 ;
 ; Function Name:  _CommListPorts($iReturnType=1)
@@ -151,7 +150,6 @@ Func _CommListPorts($iReturnType = 1)
 
 
 EndFunc   ;==>_CommListPorts
-
 
 ;===============================================================================
 ;
@@ -237,8 +235,6 @@ Func _CommSwitch($channel)
 
 EndFunc   ;==>_CommSwitch
 
-
-
 ;===========================================================================================================
 ;
 ; Function Name:    _CommSetport($iPort,ByRef $sErr,$iBaud=9600,$iBits=8,$ipar=0,$iStop=1,$iFlow=0,$RTSMode = 0,$DTRMode = 0)
@@ -257,7 +253,6 @@ EndFunc   ;==>_CommSwitch
 ;                  $iFlow - integer: 0 sets hardware flow control,
 ;                                    1 sets XON XOFF control,
 ;                                    2 sets NONE i.e. no flow control.
-
 ; 					$RTSMode 0= turns on the RTS line when the device is opened and leaves it on
 ;         					 1= RTS handshaking. The driver raises the RTS line when the "type-ahead" (input) buffer is less than one-half full and lowers the RTS line when the buffer is more than three-quarters full.
 ;         					 2 = the RTS line will be high if bytes are available for transmission. After all buffered bytes have been sent, the RTS line will be low.
@@ -328,7 +323,6 @@ Func _CommSetPort($iPort, ByRef $sErr, $iBaud = 9600, $iBits = 8, $iPar = 0, $iS
 
 EndFunc   ;==>_CommSetPort
 
-
 ;===================================================================================
 ;
 ; Function Name:  _CommPortConnection()
@@ -360,8 +354,6 @@ Func _CommPortConnection()
 
 
 EndFunc   ;==>_CommPortConnection
-
-
 
 ;=====================================================================================
 ;
@@ -397,8 +389,6 @@ Func _CommSendString($sMGString, $iWaitComplete = 0)
 
 EndFunc   ;==>_CommSendString
 
-
-
 ;================================================================================
 ;
 ; Function Name:  _CommGetstring()
@@ -430,7 +420,6 @@ Func _Commgetstring()
     EndIf
     Return $vDllAns[0]
 EndFunc   ;==>_Commgetstring
-
 
 ;====================================================================================
 ;
@@ -508,10 +497,6 @@ Func _CommGetLine($sEndChar = @CR, $maxlen = 0, $maxtime = 0)
     Return $sStr1
 EndFunc   ;==>_CommGetLine
 
-
-
-
-
 ;============================================================================
 ;
 ; Function Name:  _CommGetInputCount()
@@ -542,8 +527,6 @@ mgdebugCW("to dll getipcount");
 
 EndFunc   ;==>_CommGetInputCount
 
-
-
 ;============================================================================
 ;
 ; Function Name:  _CommGetOutputCount()
@@ -572,11 +555,9 @@ Func _CommGetOutputCount()
 
 EndFunc   ;==>_CommGetOutputCount
 
-
 ;================================================================================================
 ;
 ; Function Name:   _CommReadByte($wait = 0)
-
 ; Description:    Reads the byte as a string
 ; Parameters:     $wait:integer if 0 then if no data to read then return -1 and set @error to 1
 ;                               if <> 0 then does not return until a byte has been read
@@ -629,7 +610,6 @@ EndFunc   ;==>_CommReadByte
 ;============================================================================
 ;
 ; Function Name:   _CommReadChar($wait = 0)
-
 ; Description:    Reads the next Character as a string
 ; Parameters:     $wait:integer if 0 then if no data to read then return -1 and set @error to 1
 ;                               if <> 0 then does not return until a byte has been read
@@ -661,10 +641,8 @@ mgdebugCW("will read byte");
     If $iErr == 0 Then Return Chr(Execute($sChar))
 EndFunc   ;==>_CommReadChar
 
-
 ;============================================================================
 ; Function Name:   SendByte($byte,$iWaitComplete=0)
-
 ; Description:    Sends the byte value of $byte. $byte must be in range 0 to 255
 ; Parameters:     $byte the byte to send.
 ;                 $iWaitComplete - integer: if 0 then functions returns without
@@ -692,10 +670,8 @@ Func _CommSendByte($byte, $iWaitComplete = 0)
 
 EndFunc   ;==>_CommSendByte
 
-
 ;===============================================================================
 ; Function Name:   _CommSendByteArray($pAddr,$iNum,$iWait)
-
 ; Description:    Sends the bytes from address $pAddress
 ; Parameters:     $iNum the number of bytes to send.
 ;                 $iWaitComplete - integer: if 0 then functions returns without
@@ -723,8 +699,6 @@ Func _CommSendByteArray($pAddr, $iNum, $iWait)
     EndIf
 
 EndFunc   ;==>_CommSendByteArray
-
-
 
 ;====================================================================================
 ; Function Name:   _CommReadByteArray($pAddr,$iNum,$iWait)
@@ -758,13 +732,9 @@ Func _CommReadByteArray($pAddr, $iNum, $iWait)
 
 EndFunc   ;==>_CommReadByteArray
 
-
-
-
 ;===============================================================================
 ; Function Name:   ClearOutputBuffer()
-
-; Description:    Clears any characters in the out put queue5
+; Description:    Clears any characters in the out put queue
 ; Parameters:     none
 ; Returns:  on success returns 1
 ;           on failure returns -1 and sets @error to 1
@@ -795,17 +765,14 @@ Func _CommClearInputBuffer()
 
 EndFunc   ;==>_CommClearInputBuffer
 
-
 ;===============================================================================
 ; Function Name:   ClosePort()@@@@@@@@@to be improved or replaced. Should have parameter for channel to close and new fn for closedown
 ; Parameters
 ;            TODO ?? $fAll if set to true or non zero then
-
 ; Description:    closes currently selected port
 ; Remarks:
 ;
 ; Parameters:     none
-
 ; Returns:  no return value
 ;===============================================================================
 Func _CommClosePort($fAll = False)
@@ -834,15 +801,11 @@ Func _CommClosePort($fAll = False)
 
 EndFunc   ;==>_CommClosePort
 
-
-
 ;================================================================================================
 ; Function Name:   SendBreak($iDowTime,$iUpTime)
 ; NB Simulates the break signal used by some equipment to indicate the start of a sequence
 ;     Not tested so might Not work. Any feedback welcome - PM martin on Autoit forum
-
 ; Description:    sets the TX line low for $iDowTime, then sets it high for $iUpTime
-
 ; Parameters:     $iDowTime - integer: the number of ms to hold the TX line down
 ;                 $iUpTime   - integer: the number of ms to hold the line up for before returning
 ;                  if $iDowTime or $iUpTime is zero then does nothing and returns
@@ -852,7 +815,6 @@ EndFunc   ;==>_CommClosePort
 ;                                          = 2 1 unable to use the DLL file,
 ;                                          = 3 unknown "return type" from dll
 ;                                          = 4 "function" not found in the DLL file.
-
 ; Notes : Not tested!
 ;================================================================================================
 Func _CommSendBreak($iDowTime, $iUpTime);requirescommg2_2.dllv2.0 or later
@@ -876,7 +838,6 @@ Func _CommSendBreak($iDowTime, $iUpTime);requirescommg2_2.dllv2.0 or later
     EndIf
 
 EndFunc   ;==>_CommSendBreak
-
 
 ;=========== _CommSetBufferSizes ========================================================================================================
 ; Description: Sets the buffer sizes for the current channel
@@ -928,7 +889,6 @@ Func _CommSetTimeouts($ReadInt = 0, $ReadMult = 0, $ReadConst = 0, $WriteMult = 
     EndIf
 EndFunc   ;==>_CommSetTimeouts
 
-
 ;====================== SetXonXoffProperties =======================================================================
 ; Description: Set the values used for the XON and XOFF characters, and when these charactyers are to be transmitted
 ; Parameters - $XonChar - the ASCII code for the character to be sent to indicate the port is ready to receive
@@ -966,8 +926,6 @@ Func mgdebugCW($sDB)
 
 EndFunc   ;==>mgdebugCW
 
-
-
 ;===================================================================================
 ;
 ; Function Name:  _CommSetRTS()
@@ -998,7 +956,6 @@ Func _CommSetRTS($iSet)
 
 
 EndFunc   ;==>_CommSetRTS
-
 
 ;===================================================================================
 ;
@@ -1066,7 +1023,6 @@ Func _CommGetLineStates()
 
 EndFunc   ;==>_CommGetLineStates
 
-
 ; =====================================================================================================================
 ; Name........................: _ComGetPortNames
 ; Description ................: Lists all com ports or a single com port and the names to a 2D array
@@ -1132,7 +1088,6 @@ Func _ComGetPortNames($sComPort = "")
     Return $aRet
 EndFunc   ;==>_ComGetPortNames
 ;=======================================================================================================================
-
 
 #cs =============_ComGetPortNames example start===============================
     #include <array.au3>
