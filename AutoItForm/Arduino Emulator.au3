@@ -36,12 +36,30 @@ GUISetState(@SW_SHOW)
 #EndRegion ### END Koda GUI section ###
 
 While 1
-	Sleep(15000)
-	
+	Sleep(1000)
+	$msg = _CommGetstring()
+	if $msg <> "" Then
+	   guictrlsetdata($recieveBox,guictrlread($recieveBox)&$msg&@crlf)
+	   
+	   if StringLen ( $msg ) > 4 Then
+	   $mult = StringSplit ( $msg, " ")
+	  for $i = 1 to 6 step 1
+	  msgbox(0,"",$mult[$i])
+	  next
+	   EndIf
+	   
+
+	   
+	   select
+	case $msg = "S"
+	   _CommSendString("O")
+	   EndSelect
+	  
+	EndIf
 WEnd
 
 Func Button1Click()
-
+_CommSendString(guictrlread($Input1))
 EndFunc
 Func Form1Close()
 exit(0)

@@ -101,7 +101,7 @@ Func Slider1Change($data)
    EndIf
    guictrlsetdata($input1,$sldr)
 ;Output this to the Arduino
-$SendText = 'A' & $sldr
+$SendText = 'A' & $sldr & " "
 ;msgbox(0,"commands",$SendText)
 _CommSendstring($SendText)
 
@@ -116,7 +116,7 @@ Func Slider2Change($data)
    EndIf
    guictrlsetdata($input2,$sldr)
 ;Output this to the Arduino
-$SendText = 'B' & $sldr
+$SendText = 'B' & $sldr & " "
 ;msgbox(0,"commands",$SendText)
 _CommSendstring($SendText)
 
@@ -131,7 +131,7 @@ Func Slider3Change($data)
    EndIf
    guictrlsetdata($input3,$sldr)
 ;Output this to the Arduino
-$SendText = 'C' & $sldr
+$SendText = 'C' & $sldr & " "
 ;msgbox(0,"commands",$SendText)
 _CommSendstring($SendText)
 
@@ -146,7 +146,7 @@ Func Slider4Change($data)
    EndIf
    guictrlsetdata($input4,$sldr)
 ;Output this to the Arduino
-$SendText = 'D' & $sldr
+$SendText = 'D' & $sldr & " "
 ;msgbox(0,"commands",$SendText)
 _CommSendstring($SendText)
 EndFunc
@@ -160,7 +160,7 @@ Func Slider5Change($data)
    EndIf
    guictrlsetdata($input5,$sldr)
 ;Output this to the Arduino
-$SendText = 'E' & $sldr
+$SendText = 'E' & $sldr & " "
 ;msgbox(0,"commands",$SendText)
 _CommSendstring($SendText)
 EndFunc
@@ -174,7 +174,7 @@ Func Slider6Change($data)
    EndIf
    guictrlsetdata($input6,$sldr)
 ;Output this to the Arduino
-$SendText = 'F' & $sldr
+$SendText = 'F' & $sldr & " "
 ;msgbox(0,"commands",$SendText)
 _CommSendstring($SendText)
 EndFunc
