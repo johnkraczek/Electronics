@@ -1,4 +1,4 @@
-func SetupSerial()
+func SetupSerial($spd)
  ;Internal for the Serial UDF
 Global $sportSetError = ''
 ;COM Vars
@@ -21,7 +21,7 @@ sleep(50)
 if $fPortOpen <> False then
 
 _CommSendstring("S")
-sleep(500)
+sleep($spd)
 $Return = _CommGetstring()
 if $Return <> "O" Then
    msgbox(0,"No response Recieved", "There was no response from the Arduino,"& @crlf &" try choosing the correct COM Port" & @crlf & "you might also try closing any other application"& @crlf &" that might be using that com port.")
@@ -34,14 +34,14 @@ else
 EndIf
 
 Else
-   SetComport()
+   SetComport($spd)
 EndIf
 
 
 EndFunc
 
-func SetComPort()
+func SetComPort($spd)
 $com = InputBox("Pick Com Port","Please select the COM port for your computer",3)
 iniwrite("ControllerOptions","ComInterface","ComPort",$com)
-SetupSerial()
+SetupSerial($spd)
 EndFunc

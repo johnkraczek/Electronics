@@ -36,21 +36,34 @@ GUISetState(@SW_SHOW)
 #EndRegion ### END Koda GUI section ###
 
 While 1
-	Sleep(1000)
+	Sleep(0)
 	$msg = _CommGetstring()
 	if $msg <> "" Then
-	   guictrlsetdata($recieveBox,guictrlread($recieveBox)&$msg&@crlf)
+	  
 	   
-	   if StringLen ( $msg ) > 4 Then
-	   $mult = StringSplit ( $msg, " ")
-	  for $i = 1 to 6 step 1
-	  msgbox(0,"",$mult[$i])
-	  next
-	   EndIf
-	   
+$j = stringleft($msg,1)
+$k = stringtrimleft($msg,1)
 
-	   
-	   select
+		  Select
+		  case  $j = "A"
+			 _CommSendString("A @ "& $k)
+			 guictrlsetdata($recieveBox,"Sent A @"& $k & @crlf & guictrlread($recieveBox))
+		  case  $j = "B"
+			 _CommSendString("B @ "& $k)
+			 guictrlsetdata($recieveBox,"Sent B @"& $k& @crlf & guictrlread($recieveBox))
+		  case  $j = "C"
+			 _CommSendString("C @ "& $k)
+			 guictrlsetdata($recieveBox,"Sent C @"& $k& @crlf & guictrlread($recieveBox))
+		  case  $j = "D"
+			 _CommSendString("D @ "& $k)
+			 guictrlsetdata($recieveBox,"Sent D @"& $k& @crlf & guictrlread($recieveBox))
+		  case  $j = "E"
+			 _CommSendString("E @ "& $k)
+			 guictrlsetdata($recieveBox,"Sent E @"& $k& @crlf & guictrlread($recieveBox))
+		  case  $j = "F"
+			 _CommSendString("F @ "& $k)
+			 guictrlsetdata($recieveBox,"Sent F @"& $k& @crlf & guictrlread($recieveBox))
+
 	case $msg = "S"
 	   _CommSendString("O")
 	   EndSelect

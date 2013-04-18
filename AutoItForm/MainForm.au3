@@ -67,6 +67,16 @@ GUICtrlSetLimit(-1, 250, 0)
 GUICtrlSetOnEvent(-1, "Slider7Change")
 $Label7 = GUICtrlCreateLabel("MASTER", 78, 21, 49, 17)
 GUICtrlSetOnEvent(-1, "Label7Click")
+
+$recieveBox = GUICtrlCreateEdit("", 400, 75, 200, 275)
+guictrlsetstate($recieveBox, $GUI_DISABLE)
+
+$Input1 = GUICtrlCreateInput("", 450, 20, 150, 20)
+GUICtrlSetOnEvent(-1, "Input1Change")
+$Label1 = GUICtrlCreateButton("Send", 400, 20, 40, 20)
+GUICtrlSetOnEvent(-1, "Button1Click")
+
+
 GUISetState(@SW_SHOW)
 #EndRegion ### END Koda GUI section ###
 
@@ -82,7 +92,7 @@ Func MenuItem2Click()
 SetupSerial()
 EndFunc
 Func MenuItem3Click()
-SetComPort()
+SetComPort($spd)
 EndFunc
 Func MenuItem4Click()
 exit(0)
@@ -99,7 +109,7 @@ Func Slider1Change($data)
 	  guictrlsetdata($slider1,$data)
 	  $sldr = $data
    EndIf
-   guictrlsetdata($input1,$sldr)
+   guictrlsetdata($Input1,$sldr)
 ;Output this to the Arduino
 $SendText = 'A' & $sldr & " "
 ;msgbox(0,"commands",$SendText)
@@ -116,7 +126,7 @@ Func Slider2Change($data)
    EndIf
    guictrlsetdata($input2,$sldr)
 ;Output this to the Arduino
-$SendText = 'B' & $sldr & " "
+$SendText = 'B' & $sldr & " " & @crlf
 ;msgbox(0,"commands",$SendText)
 _CommSendstring($SendText)
 
@@ -179,8 +189,7 @@ $SendText = 'F' & $sldr & " "
 _CommSendstring($SendText)
 EndFunc
 
-Func Slider7Change()
-   $spd = 10
+Func Slider7Change($spd)
    $setVal = guictrlread($slider7)
    if $setVal = 0 Then
  	  $setVal = "0"
