@@ -29,7 +29,7 @@ void setup() {
 
 void loop(){
 //Sensing Something Voltage/Amperage/stuff.
-delay(200) 
+delay(200); 
 sensorValue = analogRead(sensorPin);
 sensorValue= sensorValue/10.24;
 Serial.print("S1 ");
@@ -84,3 +84,4 @@ Serial.println(value);
 
 	
 }
+
