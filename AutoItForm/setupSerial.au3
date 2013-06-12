@@ -16,13 +16,13 @@ Global $setflow = 2 ; Flow
 _CommSetPort($CMPort, $sportSetError, $CmBoBaud, $CmboDataBits, $CmBoParity, $CmBoStop, $setflow)
 ;check to see if we are talking
 
-sleep(50)
+sleep($spd+100)
 
 if $fPortOpen <> False then
 
 _CommSendstring("S")
 sleep($spd+100)
-$Return = _CommGetstring()
+$Return = _CommGetLine()
 if $Return <> "O" Then
    Guictrlsetdata($recieveBox,"There was no response from the"& @crlf &" Arduino, try choosing the correct "& @crlf &"COM Port."& @crlf &" you might also try closing "& @crlf &"any other application that"& @crlf &" might be using that"& @crlf &" com port."&@crlf)
 Else

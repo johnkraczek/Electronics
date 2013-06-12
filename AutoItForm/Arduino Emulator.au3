@@ -36,35 +36,35 @@ GUISetState(@SW_SHOW)
 #EndRegion ### END Koda GUI section ###
 
 While 1
-	$msg = _CommGetstring()
+	$msg = _CommGetLine()
 	if $msg <> "" Then
-	  
+	  _CommClearOutputBuffer()
 guictrlsetdata($recieveBox,"Recieved " & $msg & @crlf & guictrlread($recieveBox))
 $j = stringleft($msg,1)
 $k = stringtrimleft($msg,1)
 
 		  Select
 		  case  $j = "A"
-			 _CommSendString("A @ "& $k)
+			 _CommSendString("A @"& $k,1)
 			 guictrlsetdata($recieveBox,"Sent A @"& $k & @crlf & guictrlread($recieveBox))
 		  case  $j = "B"
-			 _CommSendString("B @ "& $k)
+			 _CommSendString("B @"& $k,1)
 			 guictrlsetdata($recieveBox,"Sent B @"& $k& @crlf & guictrlread($recieveBox))
 		  case  $j = "C"
-			 _CommSendString("C @ "& $k)
+			 _CommSendString("C @"& $k,1)
 			 guictrlsetdata($recieveBox,"Sent C @"& $k& @crlf & guictrlread($recieveBox))
 		  case  $j = "D"
-			 _CommSendString("D @ "& $k)
+			 _CommSendString("D @"& $k,1)
 			 guictrlsetdata($recieveBox,"Sent D @"& $k& @crlf & guictrlread($recieveBox))
 		  case  $j = "E"
-			 _CommSendString("E @ "& $k)
+			 _CommSendString("E @"& $k,1)
 			 guictrlsetdata($recieveBox,"Sent E @"& $k& @crlf & guictrlread($recieveBox))
 		  case  $j = "F"
-			 _CommSendString("F @ "& $k)
+			 _CommSendString("F @"& $k,1)
 			 guictrlsetdata($recieveBox,"Sent F @"& $k& @crlf & guictrlread($recieveBox))
 
 	case $msg = "S"
-	   _CommSendString("O")
+	   _CommSendString("O",1)
 	   guictrlsetdata($recieveBox,"Sent O"& $k& @crlf & guictrlread($recieveBox))
 	   EndSelect
 	  
@@ -72,11 +72,13 @@ $k = stringtrimleft($msg,1)
 WEnd
 
 Func Button1Click()
-_CommSendString(guictrlread($Input1))
+_CommSendString(guictrlread($Input1),1)
+guictrlsetdata($recieveBox,"Sent " & Guictrlread($Input1)& @crlf & guictrlread($recieveBox))
 guictrlsetdata($Input1,"")
 EndFunc
 
 Func Form1Close()
+_CommClosePort()
 exit(0)
 EndFunc
 

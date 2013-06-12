@@ -1,4 +1,4 @@
 [Log]
-speed=30000
+speed=10000
 [ComInterface]
-ComPort=3
+ComPort=4

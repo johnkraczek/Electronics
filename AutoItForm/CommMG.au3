@@ -441,7 +441,7 @@ EndFunc   ;==>_Commgetstring
 ;            received so far are returned and @error is set To -2.
 ;           on failure returns any characters received and sets @error to 1
 ;======================================================================================
-Func _CommGetLine($sEndChar = @CR, $maxlen = 0, $maxtime = 0)
+Func _CommGetLine($sEndChar = @CRLF, $maxlen = 8, $maxtime = 500)
     Local $vDllAns, $sLineRet, $sStr1, $waited, $sNextChar, $iSaveErr
 
     If Not $fPortOpen Then

@@ -95,16 +95,18 @@ GUICtrlSetOnEvent(-1, "Combo1Change")
 $Label9 = GUICtrlCreateLabel("Tag", 98, 393, 23, 17)
 GUICtrlSetOnEvent(-1, "Label9Click")
 $Input7 = GUICtrlCreateInput("", 170, 413, 49, 21)
+guictrlsetdata(-1,1)
 GUICtrlSetOnEvent(-1, "Input7Change")
 $Label10 = GUICtrlCreateLabel("Scale", 173, 393, 39, 17)
 GUICtrlSetOnEvent(-1, "Label10Click")
 $Input8 = GUICtrlCreateInput("", 244, 413, 49, 21)
 GUICtrlSetOnEvent(-1, "Input8Change")
+guictrlsetdata(-1,0)
 $Label11 = GUICtrlCreateLabel("Constant", 249, 393, 46, 17)
 GUICtrlSetOnEvent(-1, "Label11Click")
 $Label12 = GUICtrlCreateLabel("Value:", 310, 353, 34, 17)
 GUICtrlSetOnEvent(-1, "Label12Click")
-$Input9 = GUICtrlCreateInput("", 305, 375, 49, 21)
+$Input9 = GUICtrlCreateInput("", 305, 375, 100, 21)
 GUICtrlSetOnEvent(-1, "Input9Change")
 GUICtrlSetState(-1, $GUI_DISABLE)
 
@@ -114,7 +116,9 @@ GUISetState(@SW_SHOW)
 
 
 Func Form1_1Close()
+   
 FileClose($log)
+_CommClosePort()
 exit(0)
 EndFunc
 
@@ -129,6 +133,7 @@ SetComPort($spd)
 EndFunc
 Func MenuItem4Click()
 FileClose($log)
+_CommClosePort()
 exit(0)
 EndFunc
 Func MenuItem5Click()
@@ -140,8 +145,21 @@ func MenuItem6Click()
 EndFunc
 
 func Button1Click()
-   _CommSendstring(guictrlread($send))
-   EndFunc
+   _CommSendString(GUICtrlRead($send),1)
+   GUICtrlSetData($send,"")
+EndFunc
+
+func Combo1Change()
+UpdateS1()
+EndFunc
+
+func Input7Change()
+UpdateS1()
+EndFunc
+
+func Input8Change()
+UpdateS1()
+EndFunc
 
 Func Slider1Change($data)
    
@@ -155,7 +173,7 @@ Func Slider1Change($data)
 ;Output this to the Arduino
 $SendText = 'A' & $sldr & " "
 ;msgbox(0,"commands",$SendText)
-_CommSendstring($SendText)
+_CommSendstring($SendText,1)
 
 EndFunc
 Func Slider2Change($data)
@@ -170,7 +188,7 @@ Func Slider2Change($data)
 ;Output this to the Arduino
 $SendText = 'B' & $sldr & " " & @crlf
 ;msgbox(0,"commands",$SendText)
-_CommSendstring($SendText)
+_CommSendstring($SendText,1)
 
 EndFunc
 Func Slider3Change($data)
@@ -185,7 +203,7 @@ Func Slider3Change($data)
 ;Output this to the Arduino
 $SendText = 'C' & $sldr & " "
 ;msgbox(0,"commands",$SendText)
-_CommSendstring($SendText)
+_CommSendstring($SendText,1)
 
 EndFunc
 Func Slider4Change($data)
@@ -200,7 +218,7 @@ Func Slider4Change($data)
 ;Output this to the Arduino
 $SendText = 'D' & $sldr & " "
 ;msgbox(0,"commands",$SendText)
-_CommSendstring($SendText)
+_CommSendstring($SendText,1)
 EndFunc
 Func Slider5Change($data)
    if $data = "" then 
@@ -214,7 +232,7 @@ Func Slider5Change($data)
 ;Output this to the Arduino
 $SendText = 'E' & $sldr & " "
 ;msgbox(0,"commands",$SendText)
-_CommSendstring($SendText)
+_CommSendstring($SendText,1)
 EndFunc
 Func Slider6Change($data)
    if $data = "" then 
@@ -228,7 +246,7 @@ Func Slider6Change($data)
 ;Output this to the Arduino
 $SendText = 'F' & $sldr & " "
 ;msgbox(0,"commands",$SendText)
-_CommSendstring($SendText)
+_CommSendstring($SendText,1)
 EndFunc
 
 Func Slider7Change($spd)
@@ -236,18 +254,24 @@ Func Slider7Change($spd)
    if $setVal = 0 Then
  	  $setVal = "0"
    EndIf
-   
+   _CommClearOutputBuffer()
 Slider1Change($setVal)
 sleep($spd)
+updateBox()
 Slider2Change($setVal)
 sleep($spd)
+updateBox()
 Slider3Change($setVal)
 sleep($spd)
+updateBox()
 Slider4Change($setVal)
 sleep($spd)
+updateBox()
 Slider5Change($setVal)
 sleep($spd)
+updateBox()
 Slider6Change($setVal)
 sleep($spd)
+updateBox()
 
 EndFunc
