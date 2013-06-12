@@ -21,12 +21,12 @@ sleep(50)
 if $fPortOpen <> False then
 
 _CommSendstring("S")
-sleep($spd)
+sleep($spd+100)
 $Return = _CommGetstring()
 if $Return <> "O" Then
-   msgbox(0,"No response Recieved", "There was no response from the Arduino,"& @crlf &" try choosing the correct COM Port" & @crlf & "you might also try closing any other application"& @crlf &" that might be using that com port.")
+   Guictrlsetdata($recieveBox,"There was no response from the"& @crlf &" Arduino, try choosing the correct "& @crlf &"COM Port."& @crlf &" you might also try closing "& @crlf &"any other application that"& @crlf &" might be using that"& @crlf &" com port."&@crlf)
 Else
-   msgbox(0,"Online", "We Recieved a Response From the Arduino and your good to go!")
+   Guictrlsetdata($recieveBox, "We Recieved a Response From the Arduino and your good to go!"&@crlf)
 EndIf
 
 else 

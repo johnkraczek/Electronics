@@ -1,7 +1,17 @@
+#include <ProgressConstants.au3>
+#include <EditConstants.au3>
+#include <ComboConstants.au3>
+#include <GUIConstantsEx.au3>
+#include <SliderConstants.au3>
+#include <StaticConstants.au3>
+#include <WindowsConstants.au3>
+#include <GuiScrollBars.au3>
+#include <ScrollBarConstants.au3>
 Opt("GUIOnEventMode", 1)
 global $data
 #Region ### START Koda GUI section ### Form=c:\users\john\documents\github\electronics\koda\electronics control interface.kxf
-$Form1_1 = GUICreate("Electrolizer Control Interface", 615, 438, 305, 149)
+$Form1_1 = GUICreate("Electrolizer Control Interface", 615, 500, 305, 149)
+
 $MenuItem1 = GUICtrlCreateMenu("&File")
 GUICtrlSetOnEvent(-1, "MenuItem1Click")
 
@@ -12,6 +22,8 @@ GUICtrlSetOnEvent(-1, "MenuItem1Click")
 ;GUICtrlSetOnEvent(-1, "MenuItem2Click")
 $MenuItem3 = GUICtrlCreateMenuItem("ChangeComPort", $MenuItem1)
 GUICtrlSetOnEvent(-1, "MenuItem3Click")
+$MenuItem6 = GUICtrlCreateMenuItem("Change Log Speed", $MenuItem1)
+GUICtrlSetOnEvent(-1, "MenuItem6Click")
 $MenuItem4 = GUICtrlCreateMenuItem("Exit", $MenuItem1)
 GUICtrlSetOnEvent(-1, "MenuItem4Click")
 $MenuItem5 = GUICtrlCreateMenu("&Options")
@@ -61,7 +73,6 @@ GUICtrlSetState(-1, $GUI_DISABLE)
 $Input6 = GUICtrlCreateInput("0", 256, 308, 121, 21)
 GUICtrlSetState(-1, $GUI_DISABLE)
 
-
 $Slider7 = GUICtrlCreateSlider(151, 14, 150, 45)
 GUICtrlSetLimit(-1, 250, 0)
 GUICtrlSetOnEvent(-1, "Slider7Change")
@@ -69,12 +80,33 @@ $Label7 = GUICtrlCreateLabel("MASTER", 78, 21, 49, 17)
 GUICtrlSetOnEvent(-1, "Label7Click")
 
 $recieveBox = GUICtrlCreateEdit("", 400, 75, 200, 275)
-guictrlsetstate($recieveBox, $GUI_DISABLE)
-
-$Input1 = GUICtrlCreateInput("", 450, 20, 150, 20)
-GUICtrlSetOnEvent(-1, "Input1Change")
-$Label1 = GUICtrlCreateButton("Send", 400, 20, 40, 20)
+GUICtrlSetState(-1, $GUI_DISABLE)
+$send = GUICtrlCreateInput("", 450, 20, 150, 20)
+$btn1 = GUICtrlCreateButton("Send", 400, 20, 40, 20)
 GUICtrlSetOnEvent(-1, "Button1Click")
+
+
+$Progress1 = GUICtrlCreateProgress(96, 368, 200, 17)
+$Label8 = GUICtrlCreateLabel("Sensor 1", 33, 371, 46, 17)
+GUICtrlSetOnEvent(-1, "Label8Click")
+$Combo1 = GUICtrlCreateCombo("Volts", 96, 413, 49, 25, BitOR($CBS_DROPDOWN,$CBS_AUTOHSCROLL))
+GUICtrlSetData(-1, "Amps|Full")
+GUICtrlSetOnEvent(-1, "Combo1Change")
+$Label9 = GUICtrlCreateLabel("Tag", 98, 393, 23, 17)
+GUICtrlSetOnEvent(-1, "Label9Click")
+$Input7 = GUICtrlCreateInput("", 170, 413, 49, 21)
+GUICtrlSetOnEvent(-1, "Input7Change")
+$Label10 = GUICtrlCreateLabel("Scale", 173, 393, 39, 17)
+GUICtrlSetOnEvent(-1, "Label10Click")
+$Input8 = GUICtrlCreateInput("", 244, 413, 49, 21)
+GUICtrlSetOnEvent(-1, "Input8Change")
+$Label11 = GUICtrlCreateLabel("Constant", 249, 393, 46, 17)
+GUICtrlSetOnEvent(-1, "Label11Click")
+$Label12 = GUICtrlCreateLabel("Value:", 310, 353, 34, 17)
+GUICtrlSetOnEvent(-1, "Label12Click")
+$Input9 = GUICtrlCreateInput("", 305, 375, 49, 21)
+GUICtrlSetOnEvent(-1, "Input9Change")
+GUICtrlSetState(-1, $GUI_DISABLE)
 
 
 GUISetState(@SW_SHOW)
@@ -82,6 +114,7 @@ GUISetState(@SW_SHOW)
 
 
 Func Form1_1Close()
+FileClose($log)
 exit(0)
 EndFunc
 
@@ -95,11 +128,20 @@ Func MenuItem3Click()
 SetComPort($spd)
 EndFunc
 Func MenuItem4Click()
+FileClose($log)
 exit(0)
 EndFunc
 Func MenuItem5Click()
-
 EndFunc
+func MenuItem6Click()
+   $sec = inputbox("Log Speed?","What is the Default log Speed (in seconds)?",30)
+   $sec = $sec *1000
+   iniwrite("ControllerOptions","Log","speed",$sec)
+EndFunc
+
+func Button1Click()
+   _CommSendstring(guictrlread($send))
+   EndFunc
 
 Func Slider1Change($data)
    

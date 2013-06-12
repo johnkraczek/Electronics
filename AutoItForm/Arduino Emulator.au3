@@ -36,11 +36,10 @@ GUISetState(@SW_SHOW)
 #EndRegion ### END Koda GUI section ###
 
 While 1
-	Sleep(0)
 	$msg = _CommGetstring()
 	if $msg <> "" Then
 	  
-	   
+guictrlsetdata($recieveBox,"Recieved " & $msg & @crlf & guictrlread($recieveBox))
 $j = stringleft($msg,1)
 $k = stringtrimleft($msg,1)
 
@@ -66,6 +65,7 @@ $k = stringtrimleft($msg,1)
 
 	case $msg = "S"
 	   _CommSendString("O")
+	   guictrlsetdata($recieveBox,"Sent O"& $k& @crlf & guictrlread($recieveBox))
 	   EndSelect
 	  
 	EndIf
@@ -73,7 +73,9 @@ WEnd
 
 Func Button1Click()
 _CommSendString(guictrlread($Input1))
+guictrlsetdata($Input1,"")
 EndFunc
+
 Func Form1Close()
 exit(0)
 EndFunc

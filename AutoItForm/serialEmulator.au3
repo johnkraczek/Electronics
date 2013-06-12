@@ -13,7 +13,7 @@ Global $CmBoParity = "none" ; Parity
 Global $CmBoStop = 1 ; Stop
 Global $setflow = 2 ; Flow
  
-;Start up communication with the Arduino
+
 _CommSetPort($CMPort, $sportSetError, $CmBoBaud, $CmboDataBits, $CmBoParity, $CmBoStop, $setflow)
 ;check to see if we are talking
 
@@ -25,7 +25,7 @@ EndIf
 EndFunc
 
 func SetComPort()
-$com = InputBox("Pick Com Port","Please select the COM port for your computer",3)
+$com = InputBox("Pick Com Port","Please select the COM port for your computer",4)
 iniwrite("SerialEmulator","ComInterface","ComPort",$com)
 SetupSerial()
 EndFunc
