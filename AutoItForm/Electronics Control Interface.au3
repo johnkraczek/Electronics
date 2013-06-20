@@ -34,8 +34,8 @@ func SetupLog()
 EndFunc
 
 func LogData() 
-   $logVar = GUICtrlRead($Input9)
-   FileWriteLine($log, @WDAY&"/"&@MON&"/"&@YEAR&" "&@HOUR&":"&@MIN&":"&@SEC&","& $logVar)
+   ;$logVar = GUICtrlRead($Input9)
+   ;FileWriteLine($log, @WDAY&"/"&@MON&"/"&@YEAR&" "&@HOUR&":"&@MIN&":"&@SEC&","& $logVar)
 endfunc
 
 Func updateBox()

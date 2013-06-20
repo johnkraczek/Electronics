@@ -73,10 +73,10 @@ GUICtrlSetState(-1, $GUI_DISABLE)
 $Input6 = GUICtrlCreateInput("0", 256, 308, 121, 21)
 GUICtrlSetState(-1, $GUI_DISABLE)
 
-$Slider7 = GUICtrlCreateSlider(151, 14, 150, 45)
+$Slider7 = GUICtrlCreateSlider(96, 22, 150, 45)
 GUICtrlSetLimit(-1, 250, 0)
 GUICtrlSetOnEvent(-1, "Slider7Change")
-$Label7 = GUICtrlCreateLabel("MASTER", 78, 21, 49, 17)
+$Label7 = GUICtrlCreateLabel("MASTER", 40, 29, 49, 17)
 GUICtrlSetOnEvent(-1, "Label7Click")
 
 $recieveBox = GUICtrlCreateEdit("", 400, 75, 200, 275)
@@ -85,34 +85,54 @@ $send = GUICtrlCreateInput("", 450, 20, 150, 20)
 $btn1 = GUICtrlCreateButton("Send", 400, 20, 40, 20)
 GUICtrlSetOnEvent(-1, "Button1Click")
 
+$Radio1 = GUICtrlCreateRadio("Control Interface", 280, 16, 113, 17)
+GUICtrlSetOnEvent(-1, "Radio1Click")
+$Radio2 = GUICtrlCreateRadio("Monitor Interface", 280, 40, 113, 17)
+GUICtrlSetOnEvent(-1, "Radio2Click")
 
-$Progress1 = GUICtrlCreateProgress(96, 368, 200, 17)
-$Label8 = GUICtrlCreateLabel("Sensor 1", 33, 371, 46, 17)
-GUICtrlSetOnEvent(-1, "Label8Click")
-$Combo1 = GUICtrlCreateCombo("Volts", 96, 413, 49, 25, BitOR($CBS_DROPDOWN,$CBS_AUTOHSCROLL))
-GUICtrlSetData(-1, "Amps|Full")
-GUICtrlSetOnEvent(-1, "Combo1Change")
-$Label9 = GUICtrlCreateLabel("Tag", 98, 393, 23, 17)
-GUICtrlSetOnEvent(-1, "Label9Click")
-$Input7 = GUICtrlCreateInput("", 170, 413, 49, 21)
-guictrlsetdata(-1,1)
-GUICtrlSetOnEvent(-1, "Input7Change")
-$Label10 = GUICtrlCreateLabel("Scale", 173, 393, 39, 17)
-GUICtrlSetOnEvent(-1, "Label10Click")
-$Input8 = GUICtrlCreateInput("", 244, 413, 49, 21)
-GUICtrlSetOnEvent(-1, "Input8Change")
-guictrlsetdata(-1,0)
-$Label11 = GUICtrlCreateLabel("Constant", 249, 393, 46, 17)
-GUICtrlSetOnEvent(-1, "Label11Click")
-$Label12 = GUICtrlCreateLabel("Value:", 310, 353, 34, 17)
-GUICtrlSetOnEvent(-1, "Label12Click")
-$Input9 = GUICtrlCreateInput("", 305, 375, 100, 21)
-GUICtrlSetOnEvent(-1, "Input9Change")
-GUICtrlSetState(-1, $GUI_DISABLE)
-
+buildMonitor(1)
+buildMonitor(2)
 
 GUISetState(@SW_SHOW)
 #EndRegion ### END Koda GUI section ###
+
+
+
+func buildMonitor($X)
+   $y=50
+Assign("Progress"&$X, GUICtrlCreateProgress(96, 68+75*$X-$y, 200, 17),2)
+GUICtrlSetState(-1, $GUI_Hide)
+Assign("LabelSensor"&$X, GUICtrlCreateLabel("Sensor "&$X, 33, 71+75*$X-$y, 46, 17),2)
+GUICtrlSetState(-1, $GUI_Hide)
+Assign("Combo"&$X, GUICtrlCreateCombo("Volts", 96, 113+75*$X-$y, 49, 25, BitOR($CBS_DROPDOWN,$CBS_AUTOHSCROLL)),2)
+GUICtrlSetState(-1, $GUI_Hide)
+GUICtrlSetData(-1, "Amps|Full")
+GUICtrlSetOnEvent(-1, "UpdateS1")
+Assign("TagLabel"&$X,GUICtrlCreateLabel("Tag", 98, 93+75*$X-$y, 23, 17),2)
+GUICtrlSetState(-1, $GUI_Hide)
+GUICtrlSetOnEvent(-1, "Label9Click")
+Assign("tagInput"&$X, GUICtrlCreateInput("", 170, 113+75*$X-$y, 49, 21),2)
+GUICtrlSetState(-1, $GUI_Hide)
+guictrlsetdata(-1,1)
+GUICtrlSetOnEvent(-1, "UpdateS1")
+Assign("LabelScale"&$X, GUICtrlCreateLabel("Scale", 173, 93+75*$X-$y, 39, 17),2)
+GUICtrlSetState(-1, $GUI_Hide)
+GUICtrlSetOnEvent(-1, "Label10Click")
+Assign("InputScale"&$X, GUICtrlCreateInput("", 244, 113+75*$X-$y, 49, 21),2)
+GUICtrlSetState(-1, $GUI_Hide)
+GUICtrlSetOnEvent(-1, "UpdateS1")
+guictrlsetdata(-1,0)
+assign("LabelConstant"&$X, GUICtrlCreateLabel("Constant", 249, 93+75*$X-$y, 46, 17),2)
+GUICtrlSetState(-1, $GUI_Hide)
+GUICtrlSetOnEvent(-1, "Label11Click")
+Assign("LabelVal"&$X, GUICtrlCreateLabel("Value:", 310, 53+75*$X-$y, 34, 17),2)
+GUICtrlSetState(-1, $GUI_Hide)
+GUICtrlSetOnEvent(-1, "Label12Click")
+Assign("InputVal"&$X, GUICtrlCreateInput("", 305, 75+75*$X-$y, 75, 21),2)
+GUICtrlSetState(-1, $GUI_Hide)
+GUICtrlSetOnEvent(-1, "Input9Change")
+EndFunc
+
 
 
 Func Form1_1Close()
@@ -121,7 +141,6 @@ FileClose($log)
 _CommClosePort()
 exit(0)
 EndFunc
-
 Func MenuItem1Click()
 
 EndFunc
@@ -144,23 +163,57 @@ func MenuItem6Click()
    iniwrite("ControllerOptions","Log","speed",$sec)
 EndFunc
 
+
+func Radio2Click()
+   for $i=1 to 6 step 1
+   guictrlsetstate(Eval("Label"&$i),$GUI_Hide)
+   guictrlsetstate(Eval("Slider"&$i),$GUI_Hide)
+   guictrlsetstate(Eval("Input"&$i),$GUI_Hide)
+   Next
+  
+  for $i=1 to 2 step 1
+   guictrlsetstate(eval("Progress"&$i),$GUI_Show)
+   guictrlsetstate(eval("LabelSensor"&$i),$GUI_Show)
+   guictrlsetstate(eval("TagLabel"&$i),$GUI_Show)
+   guictrlsetstate(eval("tagInput"&$i),$GUI_Show)
+   guictrlsetstate(eval("LabelScale"&$i),$GUI_Show)
+   guictrlsetstate(eval("InputScale"&$i),$GUI_Show)
+   guictrlsetstate(eval("LabelConstant"&$i),$GUI_Show)
+   guictrlsetstate(eval("LabelVal"&$i),$GUI_Show)
+   guictrlsetstate(eval("InputVal"&$i),$GUI_Show)
+   guictrlsetstate(eval("Combo"&$i),$GUI_Show)
+   next
+  
+  
+   EndFunc
+func Radio1Click()
+   for $i=1 to 6 step 1
+   guictrlsetstate(Eval("Label"&$i),$GUI_Show)
+   guictrlsetstate(Eval("Slider"&$i),$GUI_Show)
+   guictrlsetstate(Eval("Input"&$i),$GUI_Show)
+Next
+
+  for $i=1 to 2 step 1
+   guictrlsetstate(eval("Progress"&$i),$Gui_Hide)
+   guictrlsetstate(eval("LabelSensor"&$i),$Gui_Hide)
+   guictrlsetstate(eval("TagLabel"&$i),$Gui_Hide)
+   guictrlsetstate(eval("tagInput"&$i),$Gui_Hide)
+   guictrlsetstate(eval("LabelScale"&$i),$Gui_Hide)
+   guictrlsetstate(eval("InputScale"&$i),$Gui_Hide)
+   guictrlsetstate(eval("LabelConstant"&$i),$Gui_Hide)
+   guictrlsetstate(eval("LabelVal"&$i),$Gui_Hide)
+   guictrlsetstate(eval("InputVal"&$i),$Gui_Hide)
+   guictrlsetstate(eval("Combo"&$i),$Gui_Hide)
+   next
+  
+   EndFunc
+
+
+
 func Button1Click()
    _CommSendString(GUICtrlRead($send),1)
    GUICtrlSetData($send,"")
 EndFunc
-
-func Combo1Change()
-UpdateS1()
-EndFunc
-
-func Input7Change()
-UpdateS1()
-EndFunc
-
-func Input8Change()
-UpdateS1()
-EndFunc
-
 Func Slider1Change($data)
    
    if $data = "" then 
@@ -248,7 +301,6 @@ $SendText = 'F' & $sldr & " "
 ;msgbox(0,"commands",$SendText)
 _CommSendstring($SendText,1)
 EndFunc
-
 Func Slider7Change($spd)
    $setVal = guictrlread($slider7)
    if $setVal = 0 Then
